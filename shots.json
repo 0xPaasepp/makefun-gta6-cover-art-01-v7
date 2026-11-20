@@ -1,0 +1,28 @@
+{
+  "shots": [
+    {
+      "height": 720,
+      "name": "1-cover.jpg",
+      "url": "/?shot=cover",
+      "width": 1280
+    },
+    {
+      "height": 720,
+      "name": "2-ink.jpg",
+      "url": "/?shot=ink",
+      "width": 1280
+    },
+    {
+      "height": 720,
+      "name": "3-editor.jpg",
+      "url": "/?shot=editor",
+      "width": 1280
+    },
+    {
+      "height": 1200,
+      "name": "4-neon.jpg",
+      "url": "/?shot=neon",
+      "width": 960
+    }
+  ]
+}

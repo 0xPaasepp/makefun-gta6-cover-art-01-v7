@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Velvet Heat — Cover Studio: turn your photos into GTA-style multi-panel cover art. Offline, no uploads.">
+<title>Velvet Heat — Cover Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark">VH</span>
+      <div>
+        <h1>Velvet Heat <span>— Cover Studio</span></h1>
+        <p class="tagline">Turn your photos into GTA-style multi-panel cover art. Offline, no uploads.</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="btn-undo" type="button" title="Undo (Ctrl+Z)">Undo</button>
+      <button id="btn-redo" type="button" title="Redo (Ctrl+Shift+Z)">Redo</button>
+      <button id="btn-export" type="button" class="primary">Export all 3 sizes</button>
+    </div>
+  </header>
+
+  <main id="workspace">
+    <aside id="panel-left">
+      <section class="group">
+        <h2>Template</h2>
+        <div id="templates" class="btn-grid"></div>
+      </section>
+      <section class="group">
+        <h2>Grade</h2>
+        <div id="grades" class="btn-grid"></div>
+        <label class="slider">Contrast <input id="sl-contrast" type="range" min="0.6" max="1.6" step="0.01" value="1"><span id="sl-contrast-v">1.00</span></label>
+        <label class="slider">Saturation <input id="sl-saturation" type="range" min="0.4" max="1.8" step="0.01" value="1"><span id="sl-saturation-v">1.00</span></label>
+        <label class="slider">Brightness <input id="sl-brightness" type="range" min="0.7" max="1.4" step="0.01" value="1"><span id="sl-brightness-v">1.00</span></label>
+        <label class="slider">Temperature <input id="sl-temperature" type="range" min="-1" max="1" step="0.01" value="0"><span id="sl-temperature-v">0.00</span></label>
+        <label class="check"><input id="tg-grain" type="checkbox" checked> Grain</label>
+        <label class="check"><input id="tg-vignette" type="checkbox" checked> Vignette</label>
+        <label class="check"><input id="tg-halftone" type="checkbox"> Halftone (ink)</label>
+      </section>
+      <section class="group">
+        <h2>Cover text</h2>
+        <label class="field">Title <input id="in-title" type="text" value="VELVET HEAT" maxlength="24"></label>
+        <label class="field">Script subtitle <input id="in-subtitle" type="text" value="last light in Miramar" maxlength="48"></label>
+        <label class="field">Tagline <input id="in-tagline" type="text" value="ONE CITY. EVERY SUMMER ENDS." maxlength="64"></label>
+        <label class="field">Eyebrow <input id="in-eyebrow" type="text" value="WELCOME TO MIRAMAR" maxlength="32"></label>
+        <label class="field">Quote <input id="in-quote" type="text" value="VELVET SKIES, LOUD NIGHTS." maxlength="64"></label>
+      </section>
+      <section class="group">
+        <h2>Selected panel</h2>
+        <p id="panel-info" class="muted">Click a panel on the cover to select it.</p>
+        <div class="row">
+          <button id="btn-zoom-out" type="button">Zoom −</button>
+          <button id="btn-zoom-in" type="button">Zoom +</button>
+          <button id="btn-rot-l" type="button">Rotate −5°</button>
+          <button id="btn-rot-r" type="button">Rotate +5°</button>
+        </div>
+        <label class="field">Panel grade
+          <select id="sel-panel-grade">
+            <option value="">Same as cover</option>
+            <option value="sunset">Sunset</option>
+            <option value="golden">Golden</option>
+            <option value="neon">Neon</option>
+            <option value="ink">Ink</option>
+            <option value="duotone">Duotone</option>
+          </select>
+        </label>
+        <label class="field">Panel photo
+          <select id="sel-panel-photo"></select>
+        </label>
+      </section>
+    </aside>
+
+    <section id="stage">
+      <div id="canvas-wrap">
+        <canvas id="cover" width="1920" height="1080"></canvas>
+        <div id="selection" hidden>
+          <span class="handle tl"></span><span class="handle tr"></span>
+          <span class="handle bl"></span><span class="handle br"></span>
+          <span id="selection-label">Drag to reposition · wheel to zoom</span>
+        </div>
+      </div>
+      <div id="size-row">
+        <button class="size-btn" data-size="1920x1080" type="button">1920 × 1080</button>
+        <button class="size-btn" data-size="1080x1080" type="button">1080 × 1080</button>
+        <button class="size-btn" data-size="1080x1350" type="button">1080 × 1350</button>
+        <span id="export-status" class="muted"></span>
+      </div>
+    </section>
+
+    <aside id="panel-right">
+      <section class="group">
+        <h2>Photos</h2>
+        <p class="muted">Up to 9. Click a photo, then click a panel to place it. Drag a photo on the cover to reposition it.</p>
+        <div id="tray" class="tray"></div>
+        <div class="row">
+          <button id="btn-fill-all" type="button">One photo fills all</button>
+          <button id="btn-sample" type="button">Load samples</button>
+        </div>
+        <label class="field">Upload your own
+          <input id="in-upload" type="file" accept="image/*" multiple>
+        </label>
+      </section>
+      <section class="group">
+        <h2>About this cover</h2>
+        <p class="muted">Velvet Heat — a fictional summer in Miramar. Six templates, five grades, per-panel crop, rotate and grade. Your photos never leave this page: everything renders locally, offline.</p>
+        <p class="muted">Shortcuts: Ctrl+Z undo · Ctrl+Shift+Z redo · E export all sizes.</p>
+      </section>
+    </aside>
+  </main>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
